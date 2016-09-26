@@ -1,16 +1,20 @@
 
 app.controller('auteurFormulaireController', function auteurFormulaireController($scope, $http, $interval, $window) {
 
-    $scope.auteur = [];
+    $scope.auteur = {};// les champs du formulaire
 
+
+    //verif de l etat du bouton envoyer du formulaire-----------------------
     $interval(function(){
-      //verif de l etat du bouton envoyer du formulaire
       if($('div.form-group.has-success').length == 9){//si tt les div form group ont success
         $('button#send').prop('disabled',false); //alors la propriete disable devient false
       }else {//dans le cas contraire disabled est a true
         $('button#send').prop('disabled',true);
       }
     }, 1000);
+    //-------------------------------------------------------------------
+
+
 
     //DEBUT function pr verif l etat de validation du formulaire-------------------
     $scope.isInputValid = function(input){
@@ -24,10 +28,9 @@ app.controller('auteurFormulaireController', function auteurFormulaireController
 
 
 
-    $scope.auteur = {};// les champs du formulaire
     $scope.addAuteur = function(){
             // $http post me permet de faire une REQUETE en POST
-            $http.post('/ajouter/add-auteur/', // equivalent a un $post mais en javascript
+            $http.post('/backoffice/add-auteur/', // equivalent a un $post mais en javascript
                 {
                   'nom': $scope.auteur.nom,
                   'prenom': $scope.auteur.prenom,
@@ -42,6 +45,8 @@ app.controller('auteurFormulaireController', function auteurFormulaireController
                 })
                 .then(function(response) {
                   $scope.auteur = {};
+                  $('#modal').modal('show');
+                  console.log('auteur bien enregistrer');
                 });
 
       }

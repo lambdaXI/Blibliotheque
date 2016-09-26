@@ -11,16 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/','DashboardController@main')->name('main');// retourne les données de tous mes auteurs inscrit
+Route::get('/gallery','DashboardController@gallery')->name('gallery');// retourne les données de tous mes auteurs inscrit
+
+Route::group(['prefix' => 'backoffice'], function () {
+  Route::get('/livre','VueController@livreVue')->name('Livre');// return la vue de tous les livres
+  Route::get('/auteur','VueController@auteurVue')->name('auteur');// return la vue de tous les livres
+
+  Route::get('/livreform','AjouterController@livre')->name('formulaireLivre');// return la vue du formulaire des livre
+  Route::get('/auteurform','AjouterController@auteur')->name('formulaireAuteur');// return la vue du formulaire des livre
+
+  Route::post('/add-auteur','AjouterController@AddAuteur')->name('AddAuteur');// ajoute des auteurs en post
+  Route::post('/add-livre','AjouterController@AddLivre')->name('AddLivre');// ajoute des livres en post
+
+  Route::any('/del-livre/{id}','VueController@DelLivre')->name('DelLivre');// supprime les livres avec parametre id
+  Route::any('/del-auteur/{id}','VueController@DelAuteur')->name('DelAuteur');// supprime les livres avec parametre id
+
+  Route::any('/edit-livreForm/{id}','VueController@EditLivreForm')->name('EditLivreForm');// formulaire d edition de livre
+  Route::any('/edit-AuteurForm/{id}','VueController@EditAuteurForm')->name('EditAuteurForm');// formulaire d edition de livre
+
+  Route::any('/edit-livre/{id}','VueController@EditLivre')->name('EditLivre');// supprime les livres avec parametre id
+  Route::any('/edit-auteur/{id}','VueController@EditAuteur')->name('EditAuteur');// supprime les auteurs avec parametre id
 });
 
-Route::group(['prefix' => 'ajouter'], function () {
+Route::get('/auteur-data','AjouterController@AuteurData')->name('AuteurData');// retourne les données de tous mes auteurs inscrit
+Route::get('/auteurGroupLiteraire-data','AjouterController@AuteurLiteraireData')->name('AuteurLiteraireData');
+Route::get('/auteurid-data/{id}','AjouterController@AuteurIdData')->name('AuteurIdData');// retourne les données de tous mes auteurs inscrit
+Route::get('/auteurtotal-data','AjouterController@AuteurTotalData')->name('AuteurTotalData');// retourne les données de tous mes auteurs inscrit
+Route::get('/livretotal-data','AjouterController@LivreTotalData')->name('LivreTotalData');
+Route::get('/livrerandom-data','AjouterController@LivreRandomData')->name('LivreRandomData');
+Route::get('/livreGroupYear-data','AjouterController@LivreGroupYear')->name('LivreGroupYear');
 
-  Route::any('/livre','AjouterController@livre')->name('formulaireLivre');// return la vue du formulaire des livre
-  Route::any('/auteur','AjouterController@auteur')->name('formulaireAuteur');// return la vue du formulaire des livre
-  Route::any('/add-auteur','AjouterController@AddAuteur')->name('AddAuteur');// return la vue du formulaire des livre
-
-});
-
-Route::any('/auteur-data','AjouterController@AuteurData')->name('AuteurData');// retourne les données de tous mes auteurs inscrit
+Route::get('/like/{id}','DashboardController@like')->name('like');
