@@ -2,11 +2,6 @@
 app.controller('livreEditController', function livreFormulaireController(
   $scope, $http, $interval, $window) {
 
-    $scope.IdLivre = 0;
-    $scope.setIdLivre = function(id){
-      $scope.IdLivre = id;
-    }
-    $scope.livre = [];
 
 
 

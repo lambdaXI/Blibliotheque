@@ -34,12 +34,12 @@ Route::group(['prefix' => 'backoffice'], function () {
   Route::any('/edit-auteur/{id}','VueController@EditAuteur')->name('EditAuteur');// supprime les auteurs avec parametre id
 });
 
-Route::get('/auteur-data','AjouterController@AuteurData')->name('AuteurData');// retourne les données de tous mes auteurs inscrit
-Route::get('/auteurGroupLiteraire-data','AjouterController@AuteurLiteraireData')->name('AuteurLiteraireData');
-Route::get('/auteurid-data/{id}','AjouterController@AuteurIdData')->name('AuteurIdData');// retourne les données de tous mes auteurs inscrit
-Route::get('/auteurtotal-data','AjouterController@AuteurTotalData')->name('AuteurTotalData');// retourne les données de tous mes auteurs inscrit
-Route::get('/livretotal-data','AjouterController@LivreTotalData')->name('LivreTotalData');
-Route::get('/livrerandom-data','AjouterController@LivreRandomData')->name('LivreRandomData');
-Route::get('/livreGroupYear-data','AjouterController@LivreGroupYear')->name('LivreGroupYear');
+Route::get('/auteur-data','AjouterController@AuteurData')->name('AuteurData');// retourne les données de tous mes auteurs en bdd
+Route::get('/auteurGroupLiteraire-data','AjouterController@AuteurLiteraireData')->name('AuteurLiteraireData');// recup les nombres d'auteur total par groupe literaire
+Route::get('/auteurid-data/{id}','AjouterController@AuteurIdData')->name('AuteurIdData');// retourne les données d'un auteur par rapport au paramettre envoyer
+Route::get('/auteurtotal-data','AjouterController@AuteurTotalData')->name('AuteurTotalData');//recup nombre total d auteur
+Route::get('/livretotal-data','AjouterController@LivreTotalData')->name('LivreTotalData');//recup nombre total de livre
+Route::get('/livrerandom-data','AjouterController@LivreRandomData')->name('LivreRandomData');//recup les donnees d un livre au hazard
+Route::get('/livreGroupYear-data','AjouterController@LivreGroupYear')->name('LivreGroupYear');//recup ts mes livres classer par annee
 
-Route::get('/like/{id}','DashboardController@like')->name('like');
+Route::get('/like/{id}','DashboardController@like')->name('like');//permet de liker ou de ne plus like un livre 

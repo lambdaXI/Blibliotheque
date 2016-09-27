@@ -43,10 +43,10 @@ app.controller('auteurFormulaireController', function auteurFormulaireController
                   'date_mort': $scope.auteur.date_mort,
                   'biographie': $scope.auteur.biographie,
                 })
-                .then(function(response) {
-                  $scope.auteur = {};
-                  $('#modal').modal('show');
-                  console.log('auteur bien enregistrer');
+                .then(function(response) { // si lajax a bien envoyer le formulaire
+                  $scope.auteur = {};//vidage des champs
+                  $('#myModal').modal('show'); // ouvre modal avec message success
+                  setTimeout(function(){ $('#myModal').modal('hide'); }, 1000); // ferme automatiquement le modal au bout de 1 sec
                 });
 
       }

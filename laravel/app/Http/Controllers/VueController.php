@@ -11,14 +11,14 @@ use Validator;
 
 class VueController extends Controller
 {
-  public function livreVue(){//return la vue du formulaire pr inserer ds auteurs avec la route (ajouter/auteur)
+  public function livreVue(){//return la liste des livres (/Livre)
     $livres = Livre::all();
     // retourne la vue
     return view('livre/vue',[
     "livres" => $livres,
   ]);
   }
-  public function auteurVue(){//return la vue du formulaire pr inserer ds auteurs avec la route (ajouter/auteur)
+  public function auteurVue(){//return la liste des auteurs (/auteur)
     $auteurs = Auteur::all();
     // retourne la vue
     return view('auteur/vue',[
@@ -33,7 +33,7 @@ class VueController extends Controller
       return redirect()->route('Livre')
       ->with('success', "Le livre '{$id->titre}' a bien ete supprimer");
   }
-  public function DelAuteur(Auteur $id){// Delete livre de la database (backoffice/del-livre/{id})
+  public function DelAuteur(Auteur $id){// Delete auteur de la database (backoffice/del-auteur/{id})
     $id->delete();
 
     //Redirection avec message de succès
@@ -41,7 +41,7 @@ class VueController extends Controller
       ->with('success', "L auteur a bien ete supprimer");
   }
 
-  public function EditLivreForm(Livre $id){// Editer livre de la database (backoffice/edit-livre/{id})
+  public function EditLivreForm(Livre $id){// Editer livre de la database (backoffice/edit-livreForm/{id})
   $dateParution = \DateTime::createFromFormat('Y-m-d', $id->date_parution);
   $date = $dateParution->format('d/m/Y');
   return view('livre/edit',[
@@ -49,11 +49,14 @@ class VueController extends Controller
     "dateParution" => $date,
   ]);
   }
-  public function EditAuteurForm(Auteur $id){// Editer livre de la database (backoffice/edit-livre/{id})
+  public function EditAuteurForm(Auteur $id){// Vue du formulaire edition auteur (backoffice//edit-AuteurForm/{id})
+  //formatage de la date de naissance
   $datebirth = \DateTime::createFromFormat('Y-m-d H:i:s', $id->date_naissance);
   $datebirth2 = $datebirth->format('d/m/Y');
+  //formatage de la date de mort
   $datedead = \DateTime::createFromFormat('Y-m-d H:i:s', $id->date_mort);
   $datedead2 = $datedead->format('d/m/Y');
+  //return vu avec les infos des champs
   return view('auteur/edit',[
     "auteur" => $id,
     "datebirth" => $datebirth2,
@@ -61,8 +64,8 @@ class VueController extends Controller
   ]);
   }
 
-  public function EditLivre(Livre $id,Request $request){// Editer livre de la database (backoffice/edit-livre/{id})
-  $validator = Validator::make($request->all(), [
+  public function EditLivre(Livre $id,Request $request){// Vue du formulaire edition Livre (backoffice/edit-livre/{id})
+  $validator = Validator::make($request->all(), [ //phase de verification
     'titre' => 'required|regex:/^[\w\d]+([\s\-]+[\w\d]+)*$/i',
     'prix' => 'required|regex:/^[0-9]{1,2}(\.[0-9]+)?/',
     'numero_isbn' => 'required|regex:/^[0-9]{9,}$/',
@@ -72,10 +75,10 @@ class VueController extends Controller
     'maison_edition' => 'required|regex:/^\w{3,}([\s\-]+\w+)*$/i',
     'date_parution' => 'required|regex:/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/',
     'magasin' => 'required|min:2|max:550',
-    'version_numerique' => 'boolean',
+    'version_numerique' => 'in:on',
   ]);
 
-  if (!$validator->fails()){
+  if (!$validator->fails()){ //phase de sauvegarde
     $dateParution = \DateTime::createFromFormat('d/m/Y', $request->date_parution);
     $id->titre = $request->titre;
     $id->prix = $request->prix;
@@ -86,24 +89,22 @@ class VueController extends Controller
     $id->maison_edition  = $request->maison_edition;
     $id->date_parution = $dateParution->format('Y-m-d'); //parser YYYY-MM-DD
     $id->magasin = $request->magasin;
-    if ($request->version_numerique) {
+    if ($request->version_numerique) { //si la check box est coché ou pas
       $id->version_numerique = 1;
     }else {
       $id->version_numerique = 0;
     }
 
     $id->save();
-  }elseif ($validator->fails()){
-
-      return redirect()->route('EditLivreForm', ['id' => $id->id]) //redirige vers nom de la route "contact"
-             ->withErrors($validator);
-
+    return redirect()->route('Livre')->with('success','Votre auteur a bien été modifié');// redirige vers ma liste des livres avec message success
+    }elseif ($validator->fails()){ //si phase de verification a des erreurs
+        return redirect()->route('EditLivreForm', ['id' => $id->id]) //redirige vers fomrulaire avec les erreurs
+               ->withErrors($validator);
     }
-  return redirect()->route('Livre')->with('success','Votre auteur a bien été modifié');
   }
 
-  public function EditAuteur(Auteur $id,Request $request){// Editer livre de la database (backoffice/edit-livre/{id})
-  $validator = Validator::make($request->all(), [
+  public function EditAuteur(Auteur $id,Request $request){// Editer auteur de la database (backoffice/edit-livre/{id})
+  $validator = Validator::make($request->all(), [// phase de verification
     'nom' => 'required|regex:/^[a-z]{3,}$/i',
     'prenom' => 'required|regex:/^[a-z]{3,}$/i',
     'age' => 'required|regex:/^[0-9]{2}$/i',
@@ -116,7 +117,7 @@ class VueController extends Controller
     'sexe' => 'required|in:homme,femme',
   ]);
 
-  if (!$validator->fails()){
+  if (!$validator->fails()){// si aucune erreur alors sauvegarde des info
     $dateBirth = \DateTime::createFromFormat('d/m/Y', $request->date_naissance);
     $dateDead = \DateTime::createFromFormat('d/m/Y', $request->date_mort);
     $id->prenom = $request->prenom;
@@ -131,11 +132,10 @@ class VueController extends Controller
     $id->biographie = $request->biographie;
     $id->save();
 
-    $id->save();
-    return redirect()->route('auteur')->with('success','Votre livre a bien été modifié');
-  }elseif ($validator->fails()){
+    return redirect()->route('auteur')->with('success','Votre livre a bien été modifié'); // redirection avec message success
+  }elseif ($validator->fails()){ // champ ayant des erreurs
 
-      return redirect()->route('auteur') //redirige vers nom de la route "contact"
+      return redirect()->route('auteur') //redirige vers nom de la route "auteur"  avec message error
              ->withErrors($validator);
 
     }

@@ -5,7 +5,25 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Ajouter Auteur</div>
+
         <div class="panel-body" ng-controller="auteurFormulaireController">
+
+          <!-- Small modal -->
+          <div  id="myModal"class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Message</h4>
+                </div>
+                <div class="modal-body">
+                  Auteur bien Ajouter!
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- fin modal --}}
+
           <form class="form-horizontal" name="form" ng-submit="addAuteur()">
             {{ csrf_field() }}
             <div class="form-group" id="formNom" ng-class="{'has-success': isInputValid(form.nom),'has-error': isInputInvalid(form.nom)}">
@@ -32,7 +50,7 @@
                 <span  class="text-warning" ng-show="form.age.$error.pattern && form.age.$touched">Le champs est invalide</span>
               </div>
             </div>
-            
+
             <div class="form-group" id="formImage" ng-class="{'has-success': isInputValid(form.image),'has-error': isInputInvalid(form.image)}">
               <label for="image" class="col-sm-2 control-label">Image:</label>
               <div class="col-sm-10">

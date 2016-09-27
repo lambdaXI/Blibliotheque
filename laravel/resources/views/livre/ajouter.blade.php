@@ -7,6 +7,23 @@
       <div class="panel panel-default">
         <div class="panel-heading">Ajouter Livre</div>
         <div class="panel-body" ng-controller="livreFormulaireController">
+
+          <!-- Small modal -->
+          <div  id="myModal"class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Message</h4>
+                </div>
+                <div class="modal-body">
+                  Auteur bien Ajouter!
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- fin modal --}}
+                    
           <form class="form-horizontal" name="form" ng-submit="addLivre()">
             {{ csrf_field() }}
             <div class="form-group" ng-class="{'has-success': isInputValid(form.titre),'has-error': isInputInvalid(form.titre)}">

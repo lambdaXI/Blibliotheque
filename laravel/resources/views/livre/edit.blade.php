@@ -80,9 +80,9 @@
                 <div class="checkbox">
                   <label>
                     @if ($livre->version_numerique === 1)
-                      <input type="checkbox" name="version_numerique" checked> Version numerique
+                      <input type="checkbox" name="version_numerique" checked ng-model="test"> Version numerique 
                     @else
-                      <input type="checkbox" name="version_numerique"> Version numerique
+                      <input type="checkbox" name="version_numerique" ng-model="test"> Version numerique
                     @endif
 
                   </label>

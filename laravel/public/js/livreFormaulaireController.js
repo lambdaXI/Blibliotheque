@@ -28,7 +28,7 @@ function areDifferentByIds(a, b) {
 $scope.select = [];// Correspond au tableau de recup des mes auteurs
 
 //Pour completer automatiquement le champs select par les nom des auteur inscrit dans la DB------------------------------
-$interval(function(){
+$interval(function(){ //dynamiquement on rafraichi la liste des auteurs avec un interval
   $http.get('/auteur-data')
     .then(function(response) {
         if(areDifferentByIds($scope.select,response.data)){
@@ -60,9 +60,10 @@ $scope.addLivre = function(){// Envoi du formulaire Livre
               'magasin': $scope.livre.magasin,
               'version_numerique': $scope.livre.version_numerique,
             })
-            .then(function(response) {
-                $scope.livre = {};
-                console.log('livre bien enregistrer');
+            .then(function(response) {// si l ajax a bien envoyer le formulaire
+                $scope.livre = {};//vidage des champs
+                $('#myModal').modal('show'); // ouvre modal avec message success
+                setTimeout(function(){ $('#myModal').modal('hide'); }, 1000); // ferme automatiquement le modal au bout de 1 sec
 
 
             });

@@ -61,7 +61,7 @@ class AjouterController extends Controller
         'titre' => 'required|regex:/^[\w\d]+([\s\-]+[\w\d]+)*$/i',
         'prix' => 'required|regex:/^[0-9]{1,2}(\.[0-9]+)?/',
         'numero_isbn' => 'required|regex:/^[0-9]{9,}$/|unique:livre,numero_isbn',
-        'image' => 'required|min:5',
+        'image' => 'required|active_url',
         'numero_ean' => 'required|min:14|unique:livre,numero_ean',
         'id_auteur' => 'required|exists:auteur,id',
         'maison_edition' => 'required|regex:/^\w{3,}([\s\-]+\w+)*$/i',
@@ -83,7 +83,12 @@ class AjouterController extends Controller
         $livre->maison_edition  = $request->maison_edition;
         $livre->date_parution = $dateParution->format('Y-m-d'); //parser YYYY-MM-DD
         $livre->magasin = $request->magasin;
-        $livre->version_numerique = $request->version_numerique;
+        if ($request->version_numerique) {
+          $livre->version_numerique = 1;
+        }else {
+          $livre->version_numerique = 0;
+        }
+
 
         $livre->save();
       }
@@ -95,26 +100,26 @@ class AjouterController extends Controller
                   ->get();
       return $variable;
     }
-    public function AuteurData(){ //recup la DataBase auteur avec la route (/auteur-data)
+    public function AuteurData(){ //recup les Donnees de ts les auteurs avec la route (/auteur-data)
       return Auteur::all();
     }
-    public function AuteurTotalData(){ //recup la DataBase auteurtotal avec la route (/auteurtotal-data)
+    public function AuteurTotalData(){ //recup nombre total d auteur avec la route (/auteurtotal-data)
       return Auteur::all()->count();
     }
-    public function LivreTotalData(){ //recup la DataBase livretotal avec la route (/livretotal-data)
+    public function LivreTotalData(){ //recup le nombre total de livre avec la route (/livretotal-data)
       return Livre::all()->count();
     }
-    public function LivreRandomData(){ //recup la DataBase livretotal avec la route (/livretotal-data)
+    public function LivreRandomData(){ //recup la DataBase d'un livre au hasard avec la route (/livrerandom-data)
       return Livre::all()->random();
     }
-    public function LivreGroupYear(){ //recup la DataBase livretotal avec la route (/livretotal-data)
+    public function LivreGroupYear(){ //recup la DataBase des livres classer par annee (/livreGroupYear-data)
       $variable = Livre::select(DB::raw('YEAR(date_parution) as year'), 'titre')
                   ->orderBy('year', 'desc')
                   ->get();
       return $variable;
     }
 
-    public function AuteurIdData(Auteur $id){ //recup la DataBase livretotal avec la route (/livretotal-data)
+    public function AuteurIdData(Auteur $id){ //recup la DataBase d un auteur par rapport au paramettre envoyer (/auteurid-data/{id})
       return $id;
     }
 }
