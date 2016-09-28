@@ -37,7 +37,7 @@
                   <th>editer</th>
                 </tr>
               </thead>
-              <tbody ng-controller="livreEditController">
+              <tbody>
                 @foreach  ($auteurs as $auteur)
                 <tr>
                   <td>{{$auteur->id}}</td>
@@ -57,7 +57,7 @@
                 @endforeach
               </tbody>
             </table>
-
+            <a href="{{ route('pdfAuteur') }}" class="btn btn-success">En Pdf</a>
         </div>
       </div>
     </div>

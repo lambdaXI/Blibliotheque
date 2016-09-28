@@ -14,6 +14,9 @@
 Route::get('/','DashboardController@main')->name('main');// retourne les données de tous mes auteurs inscrit
 Route::get('/gallery','DashboardController@gallery')->name('gallery');// retourne les données de tous mes auteurs inscrit
 
+Route::get('/pdfLivre','DashboardController@pdfLivre')->name('pdfLivre');//return la liste des livres en pdf
+Route::get('/pdfAuteur','DashboardController@pdfAuteur')->name('pdfAuteur');//return la liste des auteurs en pdf
+
 Route::group(['prefix' => 'backoffice'], function () {
   Route::get('/livre','VueController@livreVue')->name('Livre');// return la vue de tous les livres
   Route::get('/auteur','VueController@auteurVue')->name('auteur');// return la vue de tous les livres
@@ -42,4 +45,4 @@ Route::get('/livretotal-data','AjouterController@LivreTotalData')->name('LivreTo
 Route::get('/livrerandom-data','AjouterController@LivreRandomData')->name('LivreRandomData');//recup les donnees d un livre au hazard
 Route::get('/livreGroupYear-data','AjouterController@LivreGroupYear')->name('LivreGroupYear');//recup ts mes livres classer par annee
 
-Route::get('/like/{id}','DashboardController@like')->name('like');//permet de liker ou de ne plus like un livre 
+Route::get('/like/{id}','DashboardController@like')->name('like');//permet de liker ou de ne plus like un livre

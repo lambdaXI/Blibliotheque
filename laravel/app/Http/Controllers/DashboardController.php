@@ -9,6 +9,7 @@ use App\Auteur;
 use App\Livre;
 use DB;
 use \Session;
+use App;
 
 class DashboardController extends Controller
 {
@@ -52,5 +53,92 @@ class DashboardController extends Controller
         session()->put('likes', $likes);
 
         return back();
+  }
+  public function pdfLivre(){//return la liste des livres en pdf (/pdfLivre)
+    $livres = Livre::all();
+    $pdf = App::make('dompdf.wrapper');
+    $html = '<table border="2">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Titre</th>
+          <th>Prix</th>
+          <th>ISBN</th>
+          <th>EAN</th>
+          <th>Image</th>
+          <th>Id Auteur</th>
+          <th>Editeur</th>
+          <th>Date parution</th>
+          <th>Magasin</th>
+          <th>Version Numerique</th>
+          <th>vue</th>
+        </tr>
+      </thead>
+      <tbody>';
+    foreach ($livres as $livre) {
+      $html.=  '<tr>
+                  <td>'.$livre->id.'</td>
+                  <td>'.$livre->titre.'</td>
+                  <td>'.number_format($livre->prix,2).'</td>
+                  <td>'.$livre->numero_isbn.'</td>
+                  <td>'.$livre->numero_ean.'</td>
+                  <td>'.'<img src="'.$livre->image.'" alt="" width="200" height="200"/></td>
+                  <td>'.Auteur::find($livre->id_auteur)->nom.' '.Auteur::find($livre->id_auteur)->prenom.'</td>
+                  <td>'.$livre->maison_edition.'</td>
+                  <td>'.$livre->date_parution.'</td>
+                  <td>'.$livre->magasin.'</td>
+                  <td>'.$livre->version_numerique.'</td>
+                  <td>'.$livre->nombre_vue.'</td>
+                </tr>';
+    }
+    $html .= '</tbody>
+                </table>';
+     $pdf->loadHTML($html);
+      return $pdf->stream();
+  }
+
+  public function pdfAuteur(){//return la liste des auteurs en pdf (/pdfAuteur)
+    $auteurs = Auteur::all();
+    $pdf = App::make('dompdf.wrapper');
+    $html = '<table border="2">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Prix</th>
+        <th>ISBN</th>
+        <th>EAN</th>
+        <th>Image</th>
+        <th>Id Auteur</th>
+        <th>Editeur</th>
+        <th>Date parution</th>
+        <th>Magasin</th>
+        <th>Version Numerique</th>
+        <th>vue</th>
+      </tr>
+    </thead>
+    <tbody>';
+
+    foreach ($auteurs as $auteur) {
+      $html.=  '<tr>
+                  <td>'.$auteur->id.'</td>
+                  <td>'.$auteur->sexe.'</td>
+                  <td>'.$auteur->nom.'</td>
+                  <td>'.$auteur->prenom.'</td>
+                  <td>'.$auteur->age.'</td>
+                  <td>'.'<img src="'.$auteur->image.'" alt="" width="200" height="200"/></td>
+                  <td>'.$auteur->ville.'</td>
+                  <td>'.$auteur->courant_literaire.'</td>
+                  <td>'.$auteur->date_naissance.'</td>
+                  <td>'.$auteur->date_mort.'</td>
+                  <td>'.$auteur->biographie.'</td>
+                </tr>';
+    }
+    
+    $html .= '</tbody>
+                </table>';
+     $pdf->loadHTML($html);
+      return $pdf->stream();
+
   }
 }

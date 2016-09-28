@@ -38,7 +38,7 @@
                   <th>Editer</th>
                 </tr>
               </thead>
-              <tbody ng-controller="livreEditController">
+              <tbody>
                 @foreach  ($livres as $livre)
                 <tr>
                   <td>{{$livre->id}}</td>
@@ -54,12 +54,12 @@
                   <td>{{$livre->version_numerique}}</td>
                   <td>{{$livre->nombre_vue}}</td>
                   <td><a href="{{ route('DelLivre', ['id' => $livre->id]) }}" class="btn btn-danger">supprimer</a></td>
-                  <td><a href="{{ route('EditLivreForm', ['id' => $livre->id]) }}" class="btn btn-warning" ng-click="setIdLivre({{$livre->id}})">editer</a></td>
+                  <td><a href="{{ route('EditLivreForm', ['id' => $livre->id]) }}" class="btn btn-warning">editer</a></td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-
+            <a href="{{ route('pdfLivre') }}" class="btn btn-success">En Pdf</a>
         </div>
       </div>
     </div>
