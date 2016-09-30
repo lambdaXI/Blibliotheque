@@ -6,8 +6,8 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}">
+
         @show
-        <meta name="csrf-token" value="{{ csrf_token() }}">
     </head>
     <body ng-app="app">
 
@@ -31,8 +31,7 @@
       {{-- angular app --}}
       <script src="{{ asset('js/app.js') }}"></script>
       {{-- angular controller --}}
-      <script src="{{ asset('js/livreFormaulaireController.js') }}"></script>
-      <script src="{{ asset('js/auteurFormaulaireController.js') }}"></script>
+      <script src="{{ asset('js/front/FrontController.js') }}"></script>
       {{-- bootstrap js --}}
       <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     </body>

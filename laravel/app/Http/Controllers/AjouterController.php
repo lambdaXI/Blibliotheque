@@ -103,6 +103,9 @@ class AjouterController extends Controller
     public function AuteurData(){ //recup les Donnees de ts les auteurs avec la route (/auteur-data)
       return Auteur::all();
     }
+    public function LivreData(){ //recup les Donnees de ts les livre avec la route (/livre-data)
+      return Livre::all();
+    }
     public function AuteurTotalData(){ //recup nombre total d auteur avec la route (/auteurtotal-data)
       return Auteur::all()->count();
     }
