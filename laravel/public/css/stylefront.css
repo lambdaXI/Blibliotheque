@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/* bordure margin...*/
+* {
+    box-sizing:border-box;
+}
+/* taille de base a 10px*/
+html {
+    font-size: 62.5%;
+}
+body{
+  font-size: 1.4rem;
+font-family: 'Exo 2', sans-serif;
+}
+#front {
+  background-image: url(../../img/fond.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+#panier{
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+nav.navbar, .sidemenu{
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.3rem;
+}
+.logo{
+  font-family: 'Monoton', cursive;
+}

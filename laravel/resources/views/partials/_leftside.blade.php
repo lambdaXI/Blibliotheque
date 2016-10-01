@@ -1,13 +1,13 @@
-<div class="col-sm-2 col-md-2 col-lg-2">
+<div class="col-sm-2 col-md-2 col-lg-2 ">
   {{-- menu --}}
-  <ul class="nav nav-stacked">
-    <li role="presentation" class="active"><a href="#/">Home</a></li>
-    <li role="presentation"><a href="#/auteur">Auteurs</a></li>
+  <ul class="nav nav-stacked sidemenu">
+    <li role="presentation" class="active"><a href="#/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+    <li role="presentation"><a href="#/auteur"><i class="fa fa-user" aria-hidden="true"></i> Auteurs</a></li>
     <li role="presentation"><a href="{{route('main')}}">Dashboard</a></li>
   </ul>
 {{-- fin menu --}}
 <!-- pannel panier -->
-<div class="panel panel-default">
+<div class="panel panel-default" id="panier">
   <div class="panel-heading"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Votre Panier</div>
   <div class="panel-body" ng-controller="FrontController">
     <div ng-repeat="article in panier">

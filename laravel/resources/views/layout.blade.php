@@ -3,18 +3,18 @@
     <head>
         <title>Blibliotheque</title>
         @section('css')
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Exo+2|Monoton|Oswald|Ruslan+Display" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}">
         <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
-
+        <link rel="stylesheet" href="{{ asset('css/stylefront.css') }}">
         @show
     </head>
     <body ng-app="app">
 
       @include('partials/_header')
 
-      <div class="container-fluid">
+      <div class="container-fluid" id="front">
         <div class="row">
 
           @include('partials/_leftside')
