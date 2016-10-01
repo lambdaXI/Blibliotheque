@@ -10,8 +10,11 @@
 <div class="panel panel-default">
   <div class="panel-heading"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Votre Panier</div>
   <div class="panel-body" ng-controller="FrontController">
-    <p ng-repeat="article in panier">
-      l'article n°#{article[0]}# est #{article[1]}# fois dans votre panier
+    <div ng-repeat="article in panier">
+      '#{article[2]}#' #{article[1].toFixed(2)}#€ x #{article[0]}# = #{Multiplication(article[1], article[0])}#
+    </div>
+    <p>
+      Total Prix: #{prixtotal.toFixed(2)}#
     </p>
     <button type="button" name="button" class="btn btn-primary" ng-click="" ng-show="panier.length > 0"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Payer</button>
     <button type="button" name="button" class="btn btn-primary" ng-click="videPanier()" ng-show="panier.length > 0"><i class="fa fa-trash-o" aria-hidden="true"></i> Vider le panier</button>

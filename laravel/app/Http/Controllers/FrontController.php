@@ -24,32 +24,32 @@ class FrontController extends Controller
 //GESTION DU PANIER-----------------------------------------------------------------------------------------------------------------
   public function recupPanier(){ //recup de la session panier (/recup-panier)
     $panier = [];
-    foreach (session::get('panier', []) as $key => $value) {// recup de la session panier ou creer un tableau vide si il n existe pas
-      $array = [$key, $value]; //recup dans un tableau la key(id de larticle) et la value(nombre de fois acheter)
+    foreach (session::get('panier', []) as $value) {// recup de la session panier ou creer un tableau vide si il n existe pas
+      $array = [$value[0], $value[1], $value[2], $value[3]]; //recup dans un tableau le nombre de fois dans le panier[0], le prix[1], le titre [2], l'id du livre[3]
       array_push($panier,$array);//le push dans un tableau pr plus de simplicite
     }
     return $panier;//return le panier
   }
 
   //ajouter au panier un article avec la route (/panierplus)
-  public function panierplus($id){
+  public function panierplus(Livre $id){
     $panier = session::get('panier', []); // recup mon tableau de session panier si inexistant on le creer a vide
-    if (isset($panier[$id])) {//si la clef existe dans ma session panier alors
-      $panier[$id]++; // j'incremente ma valeur
+    if (isset($panier[$id->id])) {//si la clef existe dans ma session panier alors
+      $panier[$id->id][0] = $panier[$id->id][0] + 1 ; // j'incremente ma valeur
     }else { // si ma clef est inexistant ds le tableau
-      $panier[$id] = 1; //alors je l assigne a 1
+      $panier[$id->id] = [1, $id->prix , $id->titre, $id->id]; //alors je l assigne a 1
     }
     session::put('panier', $panier);//je renvoi tt dans ma session panier
   }
 
   //enlever du panier un article avec la route (/paniermoins)
-  public function paniermoins($id){
+  public function paniermoins(Livre $id){
     $panier = session::get('panier', []);// recup mon tableau de session panier si inexistant on le creer a vide
-    if (array_key_exists($id, session('panier', [])) && $panier[$id] > 1) {//si la clef existe dans ma session panier et est superieur a 1 alors
-      $panier[$id]--;//je la decremente de  1
+    if (array_key_exists($id->id, session('panier', [])) && $panier[$id->id][0] > 1) {//si la clef existe dans ma session panier et est superieur a 1 alors
+      $panier[$id->id][0] = $panier[$id->id][0] - 1;//je la decremente de  1
       session::put('panier', $panier); //je sauvegarde le changement de ma session panier
-    }elseif (array_key_exists($id, session('panier', [])) && $panier[$id] == 1) {//si elle existe et est equale a 1 alors
-      unset($panier[$id]);//je la supprime du tableau
+    }elseif (array_key_exists($id->id, session('panier', [])) && $panier[$id->id][0] == 1) {//si elle existe et est equale a 1 alors
+      unset($panier[$id->id]);//je la supprime du tableau
       session::put('panier', $panier); //je sauvegarde le changement de ma session panier
     }else {
       return false;
