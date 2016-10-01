@@ -11,7 +11,6 @@ use \Session;
 class FrontController extends Controller
 {
   public function main(){//return la vue main de mon front
-    $livres = Livre::all();//recup de ts mes livres de ma DB
     // retourne la vue
     return view('front/index'); //renvoi la vue avec les livres en variable
   }

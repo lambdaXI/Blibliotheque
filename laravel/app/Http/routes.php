@@ -23,6 +23,7 @@ Route::any('/paniermoins/{id}','FrontController@paniermoins')->name('paniermoins
 Route::any('/paniervide','FrontController@panierVide')->name('panierVide');// retourne les données de tous mes auteurs inscrit
 Route::any('/recup-panier','FrontController@recupPanier')->name('recupPanier');// retourne les données de ma session panier
 
+//Gestion like session
 Route::any('/recup-like','FrontController@recupLike')->name('recupLike');// retourne les données de ma session like
 Route::any('/liker/{id}','FrontController@liker')->name('liker');// retourne les données de ma session panier
 
@@ -66,6 +67,7 @@ Route::get('/auteurtotal-data','AjouterController@AuteurTotalData')->name('Auteu
 Route::get('/livretotal-data','AjouterController@LivreTotalData')->name('LivreTotalData');//recup nombre total de livre
 Route::get('/livrerandom-data','AjouterController@LivreRandomData')->name('LivreRandomData');//recup les donnees d un livre au hazard
 Route::get('/livreGroupYear-data','AjouterController@LivreGroupYear')->name('LivreGroupYear');//recup ts mes livres classer par annee
+Route::get('/editeurdifferent','AjouterController@editeurdifferent')->name('editeurdifferent');//recup ts mes editeurs
 
 //--------------------------------------------------
 

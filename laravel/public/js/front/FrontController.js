@@ -8,6 +8,9 @@ app.controller('FrontController', function FrontController($scope, $http, $inter
   $http.get('/livre-data')
   .then(function(response) {
     $scope.livres = response.data; // recup dans une scope mes livres pr les retransmettre a ma vue
+    for (livre of $scope.livres) { // en parcourant l'objet je formate les dates dans le bon format
+      livre.date_parution = moment(livre.date_parution,"YYYY-MM-DD").format("DD/MM/YYYY");
+    }
   });
   //----------------------------
   //recup données des auteurs--------------------
@@ -18,6 +21,13 @@ app.controller('FrontController', function FrontController($scope, $http, $inter
     for (auteur of $scope.auteurs) { // en parcourant l'objet je formate les dates dans le bon format
       auteur.date_naissance = moment(auteur.date_naissance,"YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY");
     }
+  });
+  //----------------------------
+  //recup données des editeurs--------------------
+  $scope.editeurs = [];
+  $http.get('/editeurdifferent')
+  .then(function(response) {
+    $scope.editeurs = response.data; // recup dans une scope les editeurs
   });
   //----------------------------
 

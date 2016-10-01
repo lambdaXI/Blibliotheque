@@ -98,7 +98,7 @@ class VueController extends Controller
     }
 
     $id->save();
-    return redirect()->route('Livre')->with('success','Votre auteur a bien été modifié');// redirige vers ma liste des livres avec message success
+    return redirect()->route('Livre')->with('success',"Votre livre '{$request->titre}' a bien été modifié");// redirige vers ma liste des livres avec message success
     }elseif ($validator->fails()){ //si phase de verification a des erreurs
         return redirect()->route('EditLivreForm', ['id' => $id->id]) //redirige vers fomrulaire avec les erreurs
                ->withErrors($validator);

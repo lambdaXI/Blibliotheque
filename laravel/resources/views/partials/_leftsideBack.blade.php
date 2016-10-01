@@ -38,5 +38,8 @@
         </a>
       </li>
     </ul>
+    <a class="" href="{{route('mainFront')}}">
+      <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Acceuil du site
+    </a>
   </li>
 </ul>

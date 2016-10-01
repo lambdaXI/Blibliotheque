@@ -5,7 +5,7 @@ AjouterController gere l'ajout des auteurs,livres;
 gere la vue du formulaire d'ajout de livres et auteurs (backoffice/auteurform) (backoffice/livreform)
 gere pratiquement tt les requettes SQL du backoffice que ce soit du post ou du get (attention ne gere pas les requettes du front)
 */
-namespace App\Http\Controllers; 
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -106,6 +106,12 @@ class AjouterController extends Controller
                   ->get();
       return $variable;
     }
+    public function editeurdifferent(){ //recup la DataBase auteur avec la route (/auteur-data)
+      $variable = Livre::select('maison_edition')
+                  ->groupBy('maison_edition')
+                  ->get();
+      return $variable;
+    }
     public function AuteurData(){ //recup les Donnees de ts les auteurs avec la route (/auteur-data)
       return Auteur::all();
     }
@@ -121,11 +127,11 @@ class AjouterController extends Controller
     public function LivreRandomData(){ //recup la DataBase d'un livre au hasard avec la route (/livrerandom-data)
       return Livre::all()->random();
     }
-    public function LivreGroupYear(){ //recup la DataBase des livres classer par annee (/livreGroupYear-data)
-      $variable = Livre::select(DB::raw('YEAR(date_parution) as year'), 'titre')
+    public function LivreGroupYear(){ //recup que les editeur existant des livres (/editeurdifferent)
+      $editeur = Livre::select(DB::raw('YEAR(date_parution) as year'), 'titre')
                   ->orderBy('year', 'desc')
                   ->get();
-      return $variable;
+      return $editeur;
     }
 
     public function AuteurIdData(Auteur $id){ //recup la DataBase d un auteur par rapport au paramettre envoyer (/auteurid-data/{id})

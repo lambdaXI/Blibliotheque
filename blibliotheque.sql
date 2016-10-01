@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 27 Septembre 2016 à 23:09
+-- Généré le :  Sam 01 Octobre 2016 à 16:51
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `auteur` (
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `auteur`
@@ -78,20 +78,20 @@ CREATE TABLE IF NOT EXISTS `livre` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_auteur` (`id_auteur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `livre`
 --
 
 INSERT INTO `livre` (`id`, `titre`, `prix`, `numero_isbn`, `image`, `numero_ean`, `id_auteur`, `maison_edition`, `date_parution`, `magasin`, `version_numerique`, `nombre_vue`, `created_at`, `updated_at`) VALUES
-(1, 'One Punch Man', 7.5, '2368522255', 'http://static.fnac-static.com/multimedia/Images/FR/NR/9a/b7/73/7583642/1507-1.jpg', '978-2368522257', 2, 'Kurokawa Eds', '2016-01-14', 'Fnac', 1, 0, '2016-09-26 09:17:21', '2016-09-27 20:06:48'),
-(2, 'Full Methal alchemist', 2, '2351420179', 'http://www.bedetheque.com/media/Couvertures/FullMetalAlchemist3_16112005.jpg', '978-2351420171', 3, 'Kurokawa Eds', '2005-08-01', 'Fnac', 0, 10, '2016-09-26 09:41:13', '2016-09-26 18:26:50'),
-(4, 'The Breaker', 8.05, '2820900453', 'http://static.fnac-static.com/multimedia/Images/FR/NR/4f/1e/76/7741007/1507-1.jpg', '978-2820900456', 4, 'Booken Manga', '2016-10-13', 'Fnac', 0, 0, '2016-09-26 11:42:58', '2016-09-26 20:13:17'),
-(8, 'Eye shield 21', 6.9, '2723474852', 'http://static.fnac-static.com/multimedia/FR/images_produits/FR/Fnac.com/ZoomPE/6/5/8/9782723474856.jpg', '978-2723474856', 2, 'Glenat', '2011-01-01', 'Fnac', 0, 23, '2016-09-26 14:53:53', '2016-09-26 16:48:26'),
-(9, 'Arslan', 7.65, '2368521739', 'http://static.fnac-static.com/multimedia/Images/FR/NR/18/4e/67/6770200/1507-1.jpg', '978-2368521731', 3, 'Kurokawa Eds', '2015-06-24', 'Fnac', 0, 0, '2016-09-26 17:26:28', '2016-09-26 20:13:10'),
-(10, 'Silver spoon', 6.8, '2368522603', 'http://static.fnac-static.com/multimedia/Images/FR/NR/5e/b4/75/7713886/1507-1.jpg', '978-2368522608', 3, 'Kurokawa Eds', '2016-04-14', 'Fnac', 0, 0, '2016-09-26 17:28:01', '2016-09-26 20:13:03'),
-(11, 'All-New Deadpool', 5.5, '2809459240', 'http://static.fnac-static.com/multimedia/Images/FR/NR/34/40/7a/8011828/1507-1.jpg', '978-2809459241', 8, 'Panini Comics', '2016-09-21', 'Fnac', 1, 0, '2016-09-27 20:00:37', '2016-09-27 20:06:57');
+(1, 'One Punch Man', 7.5, '2368522255', 'http://static.fnac-static.com/multimedia/Images/FR/NR/9a/b7/73/7583642/1507-1.jpg', '978-2368522257', 2, 'Kurokawa Eds', '2016-01-14', 'Fnac', 1, 24, '2016-09-26 09:17:21', '2016-10-01 14:50:50'),
+(2, 'Full Methal alchemist', 2, '2351420179', 'http://www.bedetheque.com/media/Couvertures/FullMetalAlchemist3_16112005.jpg', '978-2351420171', 3, 'Kurokawa Eds', '2005-08-01', 'Fnac', 0, 51, '2016-09-26 09:41:13', '2016-10-01 14:50:48'),
+(4, 'The Breaker', 8.05, '2820900453', 'http://static.fnac-static.com/multimedia/Images/FR/NR/4f/1e/76/7741007/1507-1.jpg', '978-2820900456', 4, 'Booken Manga', '2016-10-13', 'Fnac', 0, 15, '2016-09-26 11:42:58', '2016-10-01 14:50:52'),
+(8, 'Eye shield 21', 6.9, '2723474852', 'http://static.fnac-static.com/multimedia/FR/images_produits/FR/Fnac.com/ZoomPE/6/5/8/9782723474856.jpg', '978-2723474856', 2, 'Glenat', '2011-01-01', 'Fnac', 0, 30, '2016-09-26 14:53:53', '2016-10-01 14:43:39'),
+(9, 'Arslan', 7.65, '2368521739', 'http://static.fnac-static.com/multimedia/Images/FR/NR/18/4e/67/6770200/1507-1.jpg', '978-2368521731', 3, 'Kurokawa Eds', '2015-06-24', 'Fnac', 0, 4, '2016-09-26 17:26:28', '2016-09-30 15:12:09'),
+(10, 'Silver spoon', 6.8, '2368522603', 'http://static.fnac-static.com/multimedia/Images/FR/NR/5e/b4/75/7713886/1507-1.jpg', '978-2368522608', 3, 'Kurokawa Eds', '2016-04-14', 'Fnac', 0, 10, '2016-09-26 17:28:01', '2016-10-01 11:14:06'),
+(11, 'All-New Deadpool', 5.5, '2809459240', 'http://static.fnac-static.com/multimedia/Images/FR/NR/34/40/7a/8011828/1507-1.jpg', '978-2809459241', 8, 'Panini Comics', '2016-09-21', 'Fnac', 0, 3, '2016-09-27 20:00:37', '2016-10-01 14:40:32');
 
 -- --------------------------------------------------------
 

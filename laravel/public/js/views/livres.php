@@ -27,17 +27,27 @@
   </div><!-- /.modal -->
   <!-- fin modal  -->
   <!-- debut catalogue -->
+  <!--*** formulaire de recherche ****** -->
   <div class="row">
     <div class="col-lg-4">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Titre..." ng-model="queryLivre">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Titre..." ng-model="queryLivre">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="input-group">
+        <label for="repeatSelect"> Par Editeur: </label>
+        <select name="repeatSelect" id="repeatSelect" ng-model="queryEditeur">
+          <option value="">Tous Afficher</option>
+          <option ng-repeat="editeur in editeurs" value="#{editeur.maison_edition}#">#{editeur.maison_edition}#</option>
+        </select>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="livre in livres | filter: {titre: queryLivre}">
+  <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="livre in livres | filter: {titre: queryLivre, maison_edition: queryEditeur}">
     <div class="thumbnail">
       <img src="#{livre.image}#" alt="cover livre" width="250" height="250">
       <div class="caption">
