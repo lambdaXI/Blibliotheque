@@ -52,9 +52,4 @@
       </div>
     </div>
   </div>
-  <div ng-repeat="$like in $likes">
-    <p>
-      #{$like}#
-    </p>
-  </div>
 </div>

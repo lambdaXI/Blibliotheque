@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Blibliotheque</title>
         @section('css')
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
@@ -31,6 +31,8 @@
       {{-- angular --}}
       <script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
       <script src="{{ asset('bower_components/angular-route/angular-route.min.js') }}"></script>
+      {{-- momentjs --}}
+      <script src="{{ asset('bower_components/moment/min/moment-with-locales.min.js') }}"></script>
       {{-- angular app --}}
       <script src="{{ asset('js/app.js') }}"></script>
       {{-- angular controller --}}
