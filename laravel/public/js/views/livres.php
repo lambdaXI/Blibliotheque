@@ -14,7 +14,8 @@
           numero EAN: #{livreDetail.numero_ean}#<br>
           date de parution: #{livreDetail.date_parution}#<br>
           nomber de vue: #{livreDetail.nombre_vue}#<br>
-          <button type="button" name="button" class="btn btn-success" ng-click="ajouterpanier(livreDetail.id)">+</button> <button type="button" name="button" class="btn btn-danger" ng-click="supprimerpanier(livreDetail.id)">-</button><br>
+          <button type="button" name="button" class="btn btn-success" ng-click="ajouterpanier(livreDetail.id)">+<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+          <button type="button" name="button" class="btn btn-danger" ng-click="supprimerpanier(livreDetail.id)">-<i class="fa fa-shopping-cart" aria-hidden="true"></i></button><br>
           <button type="button" name="button" ng-click="liker(livreDetail.id)" ng-hide="likes[livreDetail.id]"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
           <button type="button" name="button" ng-click="liker(livreDetail.id)" ng-show="likes[livreDetail.id]"><i class="fa fa-heart" aria-hidden="true"></i></button><br>
         </div>
@@ -25,31 +26,31 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   <!-- fin modal  -->
-  <!-- pannel panier -->
-  <div class="panel panel-default">
-    <div class="panel-heading">Votre Panier</div>
-    <div class="panel-body">
-      <p ng-repeat="article in panier">
-        l'article n°#{article[0]}# est #{article[1]}# fois dans votre panier
-      </p>
-      <button type="button" name="button" class="btn btn-primary" ng-click="" ng-show="panier.length > 0">Payer</button>
-      <button type="button" name="button" class="btn btn-primary" ng-click="videPanier()" ng-show="panier.length > 0">Vider le panier</button>
-      <span ng-show="panier.length == 0">Vous n'avez aucun article dans votre panier</span>
-    </div>
+  <!-- debut catalogue -->
+  <div class="row">
+    <div class="col-lg-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Titre..." ng-model="queryLivre">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
   </div>
-  <!-- fin pannel panier -->
-  <div class="col-sm-6 col-md-4 col-lg-4" ng-repeat="livre in livres">
+  <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="livre in livres | filter: {titre: queryLivre}">
     <div class="thumbnail">
-      <img src="#{livre.image}#" alt="cover livre" width="150" height="150">
+      <img src="#{livre.image}#" alt="cover livre" width="250" height="250">
       <div class="caption">
         <h3>#{livre.titre}#</h3>
         <p>prix: #{livre.prix.toFixed(2)}#€</p>
         <a class="btn btn-primary" role="button" ng-click="voir(livre)">voir (incremente la vue)</a><br>
-         <button type="button" name="button" class="btn btn-success" ng-click="ajouterpanier(livre.id)">+</button> <button type="button" name="button" class="btn btn-danger" ng-click="supprimerpanier(livre.id)">-</button> <br>
+         <button type="button" name="button" class="btn btn-success" ng-click="ajouterpanier(livre.id)">+<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+         <button type="button" name="button" class="btn btn-danger" ng-click="supprimerpanier(livre.id)">-<i class="fa fa-shopping-cart" aria-hidden="true"></i></button> <br>
          <button type="button" name="button" ng-click="liker(livre.id)" ng-hide="likes[livre.id]"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
          <button type="button" name="button" ng-click="liker(livre.id)" ng-show="likes[livre.id]"><i class="fa fa-heart" aria-hidden="true"></i></button><br>
 
       </div>
     </div>
   </div>
+  <!-- fin catalogue -->
 </div>

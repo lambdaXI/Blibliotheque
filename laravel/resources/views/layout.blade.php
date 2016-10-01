@@ -19,7 +19,7 @@
 
           @include('partials/_leftside')
 
-          <div class="col-sm-9 col-md-6 col-lg-6">
+          <div class="col-sm-12 col-md-8 col-lg-8">
             @section('content')
 
             @show
