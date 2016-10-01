@@ -46,9 +46,9 @@
         </select>
       </div>
     </div>
-    <div class="radio">
+    <div class="radio" ng-init="queryOrder= 'prix'; queryreverse = false">
       <label>
-        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'titre'; queryreverse = false" checked>
+        <input type="radio" name="optionsRadios" ng-click="queryOrder = 'titre'; queryreverse = false">
         Alphabetique
       </label>
       <label>
@@ -56,7 +56,7 @@
         Alphabetique inverse
       </label>
       <label>
-        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'prix'; queryreverse = false" >
+        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'prix'; queryreverse = false" checked>
         Prix Croissant
       </label>
       <label>
