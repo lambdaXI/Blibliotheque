@@ -1,4 +1,7 @@
-
+/*
+livreFormulaireController gere la mise en forme du formulaire d ajout de livre (couleur de validation rouge et vert)
+vidage des champs du formulaire et modal en cas de validation
+*/
 app.controller('livreFormulaireController', function livreFormulaireController(
   $scope, $http, $interval, $window) {
 

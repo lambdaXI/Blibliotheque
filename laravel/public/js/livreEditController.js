@@ -1,4 +1,4 @@
-
+/*livreEditController sert juste a generer les données des auteur dans la balise select*/
 app.controller('livreEditController', function livreFormulaireController(
   $scope, $http, $interval, $window) {
 

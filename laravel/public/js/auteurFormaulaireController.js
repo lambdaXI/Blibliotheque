@@ -1,4 +1,7 @@
-
+/*
+auteurFormulaireController gere la mise en forme du formulaire d ajout d auteur (couleur de validation rouge et vert)
+vidage des champs du formulaire et modal en cas de validation
+*/
 app.controller('auteurFormulaireController', function auteurFormulaireController($scope, $http, $interval, $window) {
 
     $scope.auteur = {};// les champs du formulaire

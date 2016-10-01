@@ -1,5 +1,8 @@
 <?php
-
+/*
+DashboardController gere une petit partie de la vue (/dashboard)
+gere la vue du catalogue avec les likes(pour la partie front le controller du front gere lui aussi la meme session de like seule difference il n'y a pas de redirection)
+gere la vu en pdf*/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -13,7 +16,12 @@ use App;
 
 class DashboardController extends Controller
 {
-  public function main(){//return la vue du DashBoard avec ses info (welcome)
+
+  public function main(){
+    /*return la vue du DashBoard avec ses info (return juste le nombre total d'auteurs, de livres, et de vues dans les 3 panel rectangulaire avec logo de gauche )
+    le reste des des infos pour les doughnut , piechart et tableau sont fourni en js par le controller DashboardController.js en ajax(avec interval permet de rafraichie les données
+    sans rafraichir la page)
+    */
     $auteurTotal = Auteur::all()->count();
     $livreTotal = Livre::all()->count();
     $vueTotal = Livre::select(DB::raw('SUM(nombre_vue) as total'))->first();
@@ -25,21 +33,22 @@ class DashboardController extends Controller
   ]);
   }
 
-  public function gallery(){//return la vue du DashBoard avec ses info (welcome)
+  public function gallery(){//return la vue gallery avec les données de la session likes
     $livres = Livre::all();
 
-    if (Session::has('like')) {
-      $like =Session::get('like');
+    if (Session::has('likes')) {
+      $likes =Session::get('likes');
     }else {
-      $like = [];
-      Session::put('like', $like);
+      $likes = [];
+      Session::put('likes', $likes);
     }
     // retourne la vue
     return view('gallery',[
     "livres" => $livres,
-    'like' => $like
+    'likes' => $likes
   ]);
   }
+
   public function like(Livre $id){//return la vue du DashBoard avec ses info (welcome)
 
     $likes = session('likes', []);
@@ -54,6 +63,8 @@ class DashboardController extends Controller
 
         return back();
   }
+
+  //PARTIE MODE PDF---------------------------------------------------------------------
   public function pdfLivre(){//return la liste des livres en pdf (/pdfLivre)
     $livres = Livre::all();
     $pdf = App::make('dompdf.wrapper');
@@ -134,11 +145,12 @@ class DashboardController extends Controller
                   <td>'.$auteur->biographie.'</td>
                 </tr>';
     }
-    
+
     $html .= '</tbody>
                 </table>';
      $pdf->loadHTML($html);
       return $pdf->stream();
 
   }
+  //---------------------------------------------------------------------------
 }

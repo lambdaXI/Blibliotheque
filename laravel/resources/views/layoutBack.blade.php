@@ -46,7 +46,9 @@
 	<script src="{{ asset('lumino/js//bootstrap-datepicker.js') }}"></script>
 
 
-  <script src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js "></script>
+	{{-- angular --}}
+	<script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
+	<script src="{{ asset('bower_components/angular-route/angular-route.min.js') }}"></script>
   {{-- angular app --}}
   <script src="{{ asset('js/app.js') }}"></script>
   {{-- angular controller --}}

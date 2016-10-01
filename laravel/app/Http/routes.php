@@ -15,15 +15,22 @@ Partie FRONT
 */
 
 //Front--------------------------------------------
-Route::get('/index','FrontController@main')->name('mainFront');// retourne les données de tous mes auteurs inscrit
+Route::get('/','FrontController@main')->name('mainFront');// retourne les données de tous mes auteurs inscrit
+
+//Gestion du panier
 Route::any('/panierplus/{id}','FrontController@panierplus')->name('panierplus');// retourne les données de tous mes auteurs inscrit
 Route::any('/paniermoins/{id}','FrontController@paniermoins')->name('paniermoins');// retourne les données de tous mes auteurs inscrit
+Route::any('/paniervide','FrontController@panierVide')->name('panierVide');// retourne les données de tous mes auteurs inscrit
 Route::any('/recup-panier','FrontController@recupPanier')->name('recupPanier');// retourne les données de ma session panier
-Route::any('/vue-plus/{id}','FrontController@vuePlus')->name('vuePlus');// retourne les données de ma session panier
+
+Route::any('/recup-like','FrontController@recupLike')->name('recupLike');// retourne les données de ma session like
+Route::any('/liker/{id}','FrontController@liker')->name('liker');// retourne les données de ma session panier
+
+Route::any('/vue-plus/{id}','FrontController@vuePlus')->name('vuePlus');// permet d'incrementer les vues et de renvoyer le nombre de vue(utiliser au moment ou on affiche  un livre en detail en modal)
 //------------------------------------------------------------
 
 //back----------------------------------------------------------
-Route::get('/','DashboardController@main')->name('main');// retourne les données de tous mes auteurs inscrit
+Route::get('/dashboard','DashboardController@main')->name('main');// retourne les données de tous mes auteurs inscrit
 Route::get('/gallery','DashboardController@gallery')->name('gallery');// retourne les données de tous mes auteurs inscrit
 
 Route::get('/pdfLivre','DashboardController@pdfLivre')->name('pdfLivre');//return la liste des livres en pdf

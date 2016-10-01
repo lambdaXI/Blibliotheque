@@ -1,4 +1,6 @@
-
+/*
+DashboardController gere le doughnut, piechart et le tableau (info recuperr en ajax), seul les 3 panels d'auteur total, livres total et vue total son gerer par le controller DashboardController.php
+*/
 app.controller('DashboardController', function DashboardController(
   $scope, $http, $interval, $window) {
 

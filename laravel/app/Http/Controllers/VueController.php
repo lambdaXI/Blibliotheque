@@ -1,5 +1,7 @@
 <?php
 
+/* vuecontroller gere l'edition des auteurs, livres; la suppression des auteurs et livres ;
+ la vue de backoffice du livre (/backoffice/livre);la vue de backoffice des auteurs (/backoffice/auteur); */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

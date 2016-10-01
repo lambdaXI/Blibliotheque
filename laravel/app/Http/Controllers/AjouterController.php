@@ -1,6 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+/*
+AjouterController gere l'ajout des auteurs,livres;
+gere la vue du formulaire d'ajout de livres et auteurs (backoffice/auteurform) (backoffice/livreform)
+gere pratiquement tt les requettes SQL du backoffice que ce soit du post ou du get (attention ne gere pas les requettes du front)
+*/
+namespace App\Http\Controllers; 
 
 use Illuminate\Http\Request;
 
@@ -94,6 +99,7 @@ class AjouterController extends Controller
       }
     }
 
+    //REQUETE SQL ----------------------------------------------------------------------------------------------------
     public function AuteurLiteraireData(){ //recup la DataBase auteur avec la route (/auteur-data)
       $variable = Auteur::select(DB::raw('COUNT(*) as value'), 'courant_literaire as label')
                   ->groupBy('courant_literaire')
