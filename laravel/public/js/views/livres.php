@@ -26,7 +26,7 @@
 </div><!-- /.modal -->
 <!-- fin modal  -->
 <!-- debut catalogue -->
-<div class="row">    
+<div class="row">
   <!--*** formulaire de recherche ****** -->
   <div class="row">
     <div class="col-lg-4">
@@ -46,8 +46,26 @@
         </select>
       </div>
     </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'titre'; queryreverse = false" checked>
+        Alphabetique
+      </label>
+      <label>
+        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'titre'; queryreverse = true" >
+        Alphabetique inverse
+      </label>
+      <label>
+        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'prix'; queryreverse = false" >
+        Prix Croissant
+      </label>
+      <label>
+        <input type="radio" name="optionsRadios" ng-click="queryOrder= 'prix'; queryreverse = true" >
+        Prix Decroissant
+      </label>
+    </div>
   </div>
-  <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="livre in livres | filter: {titre: queryLivre, maison_edition: queryEditeur}">
+  <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="livre in livres | filter: {titre: queryLivre, maison_edition: queryEditeur} | orderBy : queryOrder : queryreverse">
     <div class="thumbnail">
       <img src="#{livre.image}#" alt="cover livre" width="250" height="250">
       <div class="caption">
