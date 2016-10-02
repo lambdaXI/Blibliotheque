@@ -17,13 +17,13 @@
                   <h4 class="modal-title" id="myModalLabel">Message</h4>
                 </div>
                 <div class="modal-body">
-                  Auteur bien Ajouter!
+                  Livre bien Ajouter!
                 </div>
               </div>
             </div>
           </div>
           {{-- fin modal --}}
-                    
+
           <form class="form-horizontal" name="form" ng-submit="addLivre()">
             {{ csrf_field() }}
             <div class="form-group" ng-class="{'has-success': isInputValid(form.titre),'has-error': isInputInvalid(form.titre)}">

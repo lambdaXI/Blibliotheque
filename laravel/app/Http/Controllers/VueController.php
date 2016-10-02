@@ -134,7 +134,7 @@ class VueController extends Controller
     $id->biographie = $request->biographie;
     $id->save();
 
-    return redirect()->route('auteur')->with('success','Votre livre a bien été modifié'); // redirection avec message success
+    return redirect()->route('auteur')->with('success',"Votre Auteur '{$request->nom} {$request->prenom}' a bien été modifié"); // redirection avec message success
   }elseif ($validator->fails()){ // champ ayant des erreurs
 
       return redirect()->route('auteur') //redirige vers nom de la route "auteur"  avec message error
