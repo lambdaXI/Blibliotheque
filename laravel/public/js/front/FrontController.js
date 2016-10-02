@@ -15,7 +15,7 @@ app.controller('FrontController', function FrontController($scope, $http, $inter
     var resultat = a * b;
     return resultat.toFixed(2);
   }
-  
+
   //recup données des livres--------------------
   $scope.livres = [];
   $http.get('/livre-data')
@@ -44,9 +44,7 @@ app.controller('FrontController', function FrontController($scope, $http, $inter
   $scope.editeurs = [];
   $http.get('/editeurdifferent')
   .then(function(response) {
-    if(areDifferentByIds($scope.editeurs, response.data)){
       $scope.editeurs = response.data; // recup dans une scope les editeurs
-    }
   });
   //-------------------------------------
   //button voir detail livre avec modal-------------------
@@ -56,9 +54,7 @@ app.controller('FrontController', function FrontController($scope, $http, $inter
   //avec ajax get on permet grace qu controller php d incrementer la vue en BD et recuperer la valeur vue (ce qui ns fait gagner du temp au lieux de faire une requete ajax en interval)
     $http.get('/vue-plus/' + livre.id)// pour rajouter des vues a chaque fois qu un user regarde un livre
         .then(function(response) { // si lajax a bien envoyer le formulaire
-          if(areDifferentByIds($scope.livreDetail.nombre_vue, response.data)){
-              $scope.livreDetail.nombre_vue = response.data;//
-          }
+              $scope.livreDetail.nombre_vue = response.data;
         });
     $('#myModal').modal('show');
   }
